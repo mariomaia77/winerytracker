@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyText
+  last_name: MyText
+  email: MyString
+  image: MyText
+  dob: 2016-11-28
+  password_digest: MyText
+  admin: false
+  phone: MyString
+  city: MyText
+  country: MyText
+  lat: 1.5
+  long: 1.5
+  fav_winery: MyText
+  fav_region: MyText
+  fav_variety: MyText
+
+two:
+  first_name: MyText
+  last_name: MyText
+  email: MyString
+  image: MyText
+  dob: 2016-11-28
+  password_digest: MyText
+  admin: false
+  phone: MyString
+  city: MyText
+  country: MyText
+  lat: 1.5
+  long: 1.5
+  fav_winery: MyText
+  fav_region: MyText
+  fav_variety: MyText
