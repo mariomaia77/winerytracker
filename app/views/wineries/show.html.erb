@@ -1,0 +1,27 @@
+<!-- <h1>Wineries#show</h1>
+<p>Find me in app/views/wineries/show.html.erb</p> -->
+
+<h3><%= @winery.name %></h3>
+
+<!-- <h5>A few things about myself</h5> -->
+<ul>
+  <li><%= image_tag( @winery.winery_image, :class => "thumbnail" ) %></li>
+  <li>"Why you should visit us: <%= @winery.winery_pitch %></li>
+  <li>"Our must try wines are <%= @winery.must_try_wines %>"</li>
+  <li>"Do we have a cellar door? <%= @winery.cellar_door %>"</li>
+  <li>"Do we have a restaurant? <%= @winery.restaurant %>"</li>
+  </ul>
+
+  <p>Our address is <%= @winery.winery_location %></p>
+  <p>"Want to get in touch? You can reach me on <%= @winery.email %> or just checkout our website for more info on <%= @winery.website %></p>
+
+
+<!-- <h5>Recent travellers who stopped by</h5> -->
+
+<!-- Only show these buttons if the @user vriable contains the same user as @current_user  >> otherwise others can delete others accounts -->
+<!-- <% if @winery == @current_winery %> -->
+<div class="controls">
+  <%= link_to "Edit Winery", edit_winery_path( @winery ) %> |
+  <%= link_to "Delete Winery", winery_path( @winery ), :method => :delete, :data => { :confirm => "Are you sure?" } %>
+</div>
+<!-- <% end %> -->

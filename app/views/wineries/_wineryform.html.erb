@@ -1,0 +1,55 @@
+<% unless @winery.errors.full_messages.empty? %>
+<ul>
+  <!-- Every error message printed out as a list item -->
+  <%= @winery.errors.full_messages.each do |error| %>
+  <li>
+    <%= error %>
+  </li>
+ <% end %>
+</ul>
+<% end %>
+
+<%= form_for @winery, :url => "/wineries/#{@winery.id}" do |f| %>
+
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name, :required => true %>
+</p>
+
+<p>
+  <%= f.label :winery_image %>
+  <%= f.text_field :winery_image, :required => true %>
+</p>
+
+<p>
+  <%= f.label :winery_pitch %>
+  <%= f.text_field :winery_pitch, :required => true %>
+</p>
+
+<p>
+  <%= f.label :must_try_wines %>
+  <%= f.text_field :must_try_wines, :required => true %>
+</p>
+
+<p>
+  <%= f.label :cellar_door %>
+  <%= f.check_box :cellar_door, :required => true %>
+</p>
+
+<p>
+  <%= f.label :restaurant %>
+  <%= f.check_box :restaurant, :required => true %>
+</p>
+
+<p>
+  <%= f.label :website %>
+  <%= f.url_field :website, :required => true %>
+</p>
+
+<p>
+  <%= f.label :email %>
+  <%= f.email_field :email, :required => true %>
+</p>
+
+<%= f.submit %>
+<% end %>

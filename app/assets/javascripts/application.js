@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require materialize
 //= require_tree .
+
+// AIzaSyBf60z1yG9d6W4yaotdvE72MsmKrpfbpDc

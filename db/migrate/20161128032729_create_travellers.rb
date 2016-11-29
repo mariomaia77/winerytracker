@@ -7,7 +7,7 @@ class CreateTravellers < ActiveRecord::Migration
       t.text :image
       t.date :dob
       t.text :password_digest
-      t.boolean :admin
+      t.boolean :admin, :default => false
       t.string :phone
       t.text :city
       t.text :country

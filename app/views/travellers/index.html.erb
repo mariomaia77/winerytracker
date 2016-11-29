@@ -1,0 +1,10 @@
+<!-- Travellers#index
+Find me in app/views/travellers/index.html.erb -->
+
+<h3>Wine Travellers</h3>
+
+<% @travellers.each do |t| %>
+<p>   <%= image_tag( t.image, :class => "thumbnail" ) %>
+  <%= link_to( t.first_name, t ) %> <%= link_to( t.last_name, t ) %>
+</p>
+<% end %>

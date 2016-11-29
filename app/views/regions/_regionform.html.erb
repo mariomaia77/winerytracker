@@ -1,0 +1,41 @@
+<% unless @region.errors.full_messages.empty? %>
+<ul>
+  <!-- Every error message printed out as a list item -->
+  <%= @region.errors.full_messages.each do |error| %>
+  <li>
+    <%= error %>
+  </li>
+ <% end %>
+</ul>
+<% end %>
+
+<%= form_for @region, :url => "/regions/#{@region.id}" do |f| %>
+
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name, :required => true %>
+</p>
+
+<p>
+  <%= f.label :region_img %>
+  <%= f.text_field :region_img, :required => true %>
+</p>
+
+<p>
+  <%= f.label :region_description %>
+  <%= f.text_field :region_description, :required => true %>
+</p>
+
+<p>
+  <%= f.label :region_varieties %>
+  <%= f.text_field :region_varieties, :required => true %>
+</p>
+
+<p>
+  <%= f.label :vintages %>
+  <%= f.text_field :vintages, :required => true %>
+</p>
+
+
+<%= f.submit %>
+<% end %>

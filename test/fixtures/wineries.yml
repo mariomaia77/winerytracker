@@ -1,0 +1,100 @@
+# == Schema Information
+#
+# Table name: wineries
+#
+#  id                 :integer          not null, primary key
+#  name               :text
+#  winery_image       :text
+#  winery_admin       :boolean          default(FALSE)
+#  is_winery          :boolean
+#  is_certified       :boolean
+#  rating             :text
+#  email              :text
+#  website            :text
+#  winery_lat         :float
+#  winery_long        :float
+#  feature_wine       :text
+#  winery_description :text
+#  winery_pitch       :text
+#  must_try_wines     :text
+#  winery_event       :text
+#  winery_event_date  :date
+#  visit_app_only     :boolean
+#  cellar_door        :boolean
+#  restaurant         :boolean
+#  rest_name          :text
+#  open_time_cd       :datetime
+#  close_time_cd      :datetime
+#  open_days_cd       :text
+#  open_time_rest     :datetime
+#  close_time_rest    :datetime
+#  open_days_rest     :text
+#  region_id          :integer
+#  winery_location    :text
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  winery_image: MyText
+  winery_admin: false
+  is_winery: false
+  is_certified: false
+  rating: MyText
+  email: MyText
+  website: MyText
+  winery_lat: 1.5
+  winery_long: 1.5
+  feature_wine: MyText
+  winery_description: MyText
+  winery_pitch: MyText
+  must_try_wines: MyText
+  winery_event: MyText
+  winery_event_date: 2016-11-29
+  visit_app_only: false
+  cellar_door: false
+  restaurant: false
+  rest_name: MyText
+  open_time_cd: 2016-11-29 08:12:10
+  close_time_cd: 2016-11-29 08:12:10
+  open_days_cd: MyText
+  open_time_rest: 2016-11-29 08:12:10
+  close_time_rest: 2016-11-29 08:12:10
+  open_days_rest: MyText
+  traveller_id: 1
+  region_id: 1
+  winery_location: MyText
+
+two:
+  name: MyText
+  winery_image: MyText
+  winery_admin: false
+  is_winery: false
+  is_certified: false
+  rating: MyText
+  email: MyText
+  website: MyText
+  winery_lat: 1.5
+  winery_long: 1.5
+  feature_wine: MyText
+  winery_description: MyText
+  winery_pitch: MyText
+  must_try_wines: MyText
+  winery_event: MyText
+  winery_event_date: 2016-11-29
+  visit_app_only: false
+  cellar_door: false
+  restaurant: false
+  rest_name: MyText
+  open_time_cd: 2016-11-29 08:12:10
+  close_time_cd: 2016-11-29 08:12:10
+  open_days_cd: MyText
+  open_time_rest: 2016-11-29 08:12:10
+  close_time_rest: 2016-11-29 08:12:10
+  open_days_rest: MyText
+  traveller_id: 1
+  region_id: 1
+  winery_location: MyText

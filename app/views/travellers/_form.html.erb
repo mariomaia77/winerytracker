@@ -1,0 +1,44 @@
+<!-- If the traveller has any error messages  -->
+  <!-- Iterate through all of them -->
+    <!-- Print out the messages -->
+<% unless @traveller.errors.full_messages.empty? %>
+<ul>
+  <!-- Every error message printed out as a list item -->
+  <%= @traveller.errors.full_messages.each do |error| %>
+  <li>
+    <%= error %>
+  </li>
+ <% end %>
+</ul>
+<% end %>
+
+<%= form_for @traveller, :url => "/travellers/#{@traveller.id}" do |f| %>
+
+<p>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, :required => true %>
+</p>
+
+<p>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, :required => true %>
+</p>
+
+<p>
+  <%= f.label :email %>
+  <%= f.email_field :email, :required => true %>
+</p>
+
+<p>
+  <%= f.label :password %>
+  <%= f.password_field :password, :required => true %>
+</p>
+
+<p>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, :required => true %>
+</p>
+
+
+<%= f.submit %>
+<% end %>

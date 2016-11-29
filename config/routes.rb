@@ -1,56 +1,57 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  get 'regions/index'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  get 'regions/show'
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  get 'regions/new'
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  get 'regions/edit'
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  get 'regions/search'
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  get 'regions/search_result'
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
+  get 'wineries/index'
 
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+  get 'wineries/show'
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  get 'wineries/new'
+
+  get 'wineries/edit'
+
+  get 'wineries/search'
+
+  get 'wineries/search_results'
+
+  get 'wineries/index'
+
+  get 'wineries/show'
+
+  get 'wineries/new'
+
+  get 'wineries/edit'
+
+  get 'wineries/search'
+
+  get 'wineries/search_results'
+
+  root "pages#home"
+  get "/home" => "pages#home"
+  get "/about" => "pages#about"
+
+  get "/travellers/search_results" => "traveller#search_results", :as => "search_traveller"
+  get "/travellers/additional_info" => "travellers#additional_info", :as => "additional_info_traveller"
+  get "/travellers/edit" => "travellers#edit", :as => "edit_traveller"
+  resources :travellers, :except =>[:edit]
+  #Creates the CRUD urls for me (but ignoring EDIT)
+
+  resources :wineries, :regions
+  # this will allow you to have links and paths to wineries and regions
+
+  get "/login" => "session#new", :as => "login"
+  post "/login" => "session#create"
+  delete "/login" => "session#destroy"
+
+
 end

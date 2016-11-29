@@ -1,0 +1,44 @@
+# == Schema Information
+#
+# Table name: regions
+#
+#  id                 :integer          not null, primary key
+#  name               :text
+#  location           :text
+#  region_lat         :float
+#  region_long        :float
+#  vintages           :text
+#  region_description :text
+#  region_varieties   :text
+#  region_img         :text
+#  region_event       :text
+#  region_event_date  :date
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  location: MyText
+  region_lat: 1.5
+  region_long: 1.5
+  vintages: MyText
+  region_description: MyText
+  region_varieties: MyText
+  region_img: MyText
+  region_event: MyText
+  region_event_date: 2016-11-29
+
+two:
+  name: MyText
+  location: MyText
+  region_lat: 1.5
+  region_long: 1.5
+  vintages: MyText
+  region_description: MyText
+  region_varieties: MyText
+  region_img: MyText
+  region_event: MyText
+  region_event_date: 2016-11-29

@@ -7,8 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <h1>The Barrel Hunter's Winery Tracker</h1>
+  <h2>The wine traveller's new best friend</h2>
 
+  <nav>
+    <%= link_to "Home", root_path %> |
+    <%= link_to "About", "/about" %> |
+    <%= link_to "Search", search_traveller_path %> |
+    <%= link_to "Travellers", travellers_path %> |
+    <%= link_to "Wine Regions", regions_path %> |
+    <%= link_to "Wineries", wineries_path %> |
+
+  <!-- If there are no logged in travellers: -->
+  <% unless @current_traveller.present? %>
+    <%= link_to "Sign Up", new_traveller_path %> |
+    <%= link_to "Log In", login_path %>
+    <!-- If you are logged in:  -->
+  <% else %>
+    <%= link_to "Edit Profile", edit_traveller_path() %> |
+    <%= link_to "Log Out #{@current_traveller.email}", login_path, :method => :delete %>
+  <% end %>
+  </nav>
+
+<hr>
+<div class="container">
 <%= yield %>
+</div>
+<hr>
+
 
 </body>
 </html>

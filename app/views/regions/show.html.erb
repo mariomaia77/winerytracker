@@ -1,0 +1,29 @@
+<!-- <h1>Regions#show</h1>
+<p>Find me in app/views/regions/show.html.erb</p> -->
+
+<h3><%= @region.name %></h3>
+
+<!-- <h5>A few things about myself</h5> -->
+<ul>
+  <li><%= image_tag( @region.region_img, :class => "thumbnail" ) %></li>
+  <li>"Why you should visit us: <%= @region.region_description %></li>
+  <li>"Our must try wines are <%= @region.region_varieties %>"</li>
+  <li>"Do we have a cellar door? <%= @region.vintages %>"</li>
+  </ul>
+
+
+  <h5>Wineries of <%= @region.name %></h5>
+
+  <% @region.wineries.each do |w| %>
+  <p>
+    <%= link_to( w.name, winery_path(w) ) %>
+  </p>
+  <% end %>
+
+
+  <!-- <% if @region == @current_region %> -->
+  <div class="controls">
+    <%= link_to "Edit Region", edit_region_path( @region ) %> |
+    <%= link_to "Delete Region", region_path( @wregion ), :method => :delete, :data => { :confirm => "Are you sure?" } %>
+  </div>
+  <!-- <% end %> -->
