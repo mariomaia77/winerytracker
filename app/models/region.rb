@@ -20,6 +20,6 @@
 class Region < ActiveRecord::Base
   has_many :wineries
   has_many :travellers, :through => :wineries
-  geocoded_by :location
+  geocoded_by :location, :latitude  => :region_lat, :longitude => :region_long # ActiveRecord
   after_validation :geocode
 end

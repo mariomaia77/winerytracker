@@ -19,3 +19,30 @@
     <% end %>
    </div>
 <%= link_to "New Region", new_region_path %>
+
+<div id="map"></div>
+
+<script>
+   var allRegions = <%= raw @regions.all.to_json %>;
+   // var region = <%= raw @region.to_json %>;
+   function initMap() {
+
+      var all_regions = {
+         lat: <%= Region.last.region_lat %>,
+         lng: <%= Region.last.region_long %>
+      };
+      var map = new google.maps.Map(document.getElementById('map'), {
+         zoom: 4,
+         center: uluru
+      });
+      var marker = new google.maps.Marker({
+         position: uluru,
+         map: map
+      });
+   }
+</script>
+
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5qK_UhmrYD2Dbz1LTB9xx3upiU7Bmy2s&callback=initMap">
+</script>

@@ -18,7 +18,7 @@
 
 <p>
   <%= f.label :winery_image %>
-  <%= f.text_field :winery_image, :required => true %>
+  <%= f.url_field :winery_image, :required => true %>
 </p>
 
 <p>
@@ -32,13 +32,18 @@
 </p>
 
 <p>
-  <%= f.label :cellar_door %>
   <%= f.check_box :cellar_door, :required => true %>
+  <%= f.label :cellar_door %>
 </p>
 
 <p>
-  <%= f.label :restaurant %>
   <%= f.check_box :restaurant, :required => true %>
+  <%= f.label :restaurant %>
+</p>
+
+<p>
+  <%= f.label :winery_location %>
+  <%= f.text_field :winery_location, :required => true %>
 </p>
 
 <p>

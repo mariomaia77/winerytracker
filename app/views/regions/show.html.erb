@@ -6,9 +6,9 @@
 <!-- <h5>A few things about myself</h5> -->
 <ul>
   <li><%= image_tag( @region.region_img, :class => "thumbnail" ) %></li>
-  <li>"Why you should visit us: <%= @region.region_description %></li>
-  <li>"Our must try wines are <%= @region.region_varieties %>"</li>
-  <li>"Do we have a cellar door? <%= @region.vintages %>"</li>
+  <li>"Why you should visit this region: <%= @region.region_description %></li>
+  <li>"Our our main varieties <%= @region.region_varieties %>"</li>
+  <li>"Our recent vintages: <%= @region.vintages %>"</li>
   </ul>
 
 
@@ -20,10 +20,32 @@
   </p>
   <% end %>
 
-
-  <!-- <% if @region == @current_region %> -->
   <div class="controls">
     <%= link_to "Edit Region", edit_region_path( @region ) %> |
-    <%= link_to "Delete Region", region_path( @wregion ), :method => :delete, :data => { :confirm => "Are you sure?" } %>
+    <%= link_to "Delete Region", region_path( @region ), :method => :delete, :data => { :confirm => "Are you sure?" } %>
   </div>
-  <!-- <% end %> -->
+
+  <div id="map"></div>
+
+  <script>
+     var region = <%= raw @region.to_json %>;
+     function initMap() {
+
+        var region_map = {
+           lat: <%= Region.region_lat %>,
+           lng: <%= Region.region_long %>
+        };
+        var map = new google.maps.Map(document.getElementById('map'), {
+           zoom: 4,
+           center: region
+        });
+        var marker = new google.maps.Marker({
+           position: region,
+           map: map
+        });
+     }
+  </script>
+
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5qK_UhmrYD2Dbz1LTB9xx3upiU7Bmy2s&callback=initMap">
+  </script>

@@ -18,27 +18,28 @@ class WineriesController < ApplicationController
   end
 
   def edit
-    @winery = @current_winery
+    @winery = Winery.find_by :id => params[:id]
   end
 
   def update
-    @winery = @current_winery
-    if @winery.update( winery_params )
-      redirect_to @winery
-    else
-      render :edit
+    @winery = Winery.find_by :id => params[:id]
+     if @winery.update( winery_params )
+        redirect_to @winery
+     else
+        render :edit
     end
   end
 
     def destroy
-      winery = @current_winery
+      winery = Winery.find_by :id => params[:id]
       winery.destroy
       redirect_to wineries_path()
     end
 
+
     private
       def winery_params
-        params.require(:winery).permit(:email, :website, :name, :winery_image, :winery_location, :winery_pitch, :winery_description, :cellar_door, :restaurant, :location, :must_try_wines)
+        params.require(:winery).permit(:email, :website, :name, :winery_image, :winery_location, :winery_pitch, :winery_description, :cellar_door, :restaurant, :must_try_wines)
       end
   end
 

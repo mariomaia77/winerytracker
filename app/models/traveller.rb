@@ -27,6 +27,6 @@ class Traveller < ActiveRecord::Base
   has_secure_password
   has_and_belongs_to_many :wineries
   has_many :regions, :through => :wineries
-  geocoded_by :location
+  geocoded_by :location, :latitude  => :lat, :longitude => :long # ActiveRecord
   after_validation :geocode
 end

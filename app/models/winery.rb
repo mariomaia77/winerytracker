@@ -38,6 +38,6 @@
 class Winery < ActiveRecord::Base
   has_and_belongs_to_many :travellers
   belongs_to :region
-  geocoded_by :winery_location
+  geocoded_by :winery_location, :latitude  => :winery_lat, :longitude => :winery_long # ActiveRecord
   after_validation :geocode
 end

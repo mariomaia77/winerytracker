@@ -3,25 +3,49 @@
 
 <h3><%= @winery.name %></h3>
 
-<!-- <h5>A few things about myself</h5> -->
 <ul>
   <li><%= image_tag( @winery.winery_image, :class => "thumbnail" ) %></li>
-  <li>"Why you should visit us: <%= @winery.winery_pitch %></li>
-  <li>"Our must try wines are <%= @winery.must_try_wines %>"</li>
-  <li>"Do we have a cellar door? <%= @winery.cellar_door %>"</li>
-  <li>"Do we have a restaurant? <%= @winery.restaurant %>"</li>
+  <br>
+  <li>Why you should visit us:</li>
+  <li> <%= @winery.winery_pitch %></li>
+  <br>
+  <li>Our must try wines are <%= @winery.must_try_wines %></li>
+  <li>Do we have a cellar door? <%= @winery.cellar_door %></li>
+  <li>Do we have a restaurant? <%= @winery.restaurant %></li>
+  <br>
+  <li>Want to get in touch?</li>
+  <li>You can reach us on <%= @winery.email %> or just checkout our website for more info on <%= @winery.website %></li>
   </ul>
 
-  <p>Our address is <%= @winery.winery_location %></p>
-  <p>"Want to get in touch? You can reach me on <%= @winery.email %> or just checkout our website for more info on <%= @winery.website %></p>
-
-
 <!-- <h5>Recent travellers who stopped by</h5> -->
-
-<!-- Only show these buttons if the @user vriable contains the same user as @current_user  >> otherwise others can delete others accounts -->
-<!-- <% if @winery == @current_winery %> -->
 <div class="controls">
   <%= link_to "Edit Winery", edit_winery_path( @winery ) %> |
   <%= link_to "Delete Winery", winery_path( @winery ), :method => :delete, :data => { :confirm => "Are you sure?" } %>
 </div>
-<!-- <% end %> -->
+
+<p>Our address is <%= @winery.winery_location %></p>
+
+<div id="map"></div>
+
+<script>
+   var winery = <%= raw @winery.to_json %>;
+
+   function initMap() {
+
+      var winery_map = {
+         lat: winery["winery_lat"],
+         lng: winery["winery_long"]
+      };
+      var map = new google.maps.Map(document.getElementById('map'), {
+         zoom: 4,
+         center: winery_map
+      });
+      var marker = new google.maps.Marker({
+         position: winery_map,
+         map: map
+      });
+   }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5qK_UhmrYD2Dbz1LTB9xx3upiU7Bmy2s&callback=initMap">
+</script>

@@ -18,11 +18,11 @@ class RegionsController < ApplicationController
   end
 
   def edit
-    @region = @current_region
+    @region = Region.find_by :id => params[:id]
   end
 
   def update
-    @region = @current_region
+    @region = Region.find_by :id => params[:id]
     if @region.update( region_params )
       redirect_to @region
     else
@@ -31,7 +31,7 @@ class RegionsController < ApplicationController
   end
 
     def destroy
-      region = @current_region
+      region = Region.find_by :id => params[:id]
       region.destroy
       redirect_to regions_path()
     end

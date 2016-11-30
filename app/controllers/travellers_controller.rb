@@ -58,11 +58,9 @@ class TravellersController < ApplicationController
     end
 
     def search
-
     end
 
     def search_results
-
     end
 
     private

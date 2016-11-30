@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   get "/home" => "pages#home"
   get "/about" => "pages#about"
 
-  get "/travellers/search_results" => "traveller#search_results", :as => "search_traveller"
+  get "/travellers/search_results" => "travellers#search_results", :as => "search_traveller"
   get "/travellers/additional_info" => "travellers#additional_info", :as => "additional_info_traveller"
   get "/travellers/edit" => "travellers#edit", :as => "edit_traveller"
   resources :travellers, :except =>[:edit]
