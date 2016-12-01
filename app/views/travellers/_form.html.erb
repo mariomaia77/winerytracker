@@ -11,7 +11,8 @@
  <% end %>
 </ul>
 <% end %>
-
+<div class="formtext">
+  <div class="formtext-background"></div>
 <%= form_for @traveller, :url => "/travellers/#{@traveller.id}" do |f| %>
 
 <p>
@@ -42,3 +43,4 @@
 
 <%= f.submit %>
 <% end %>
+</div>

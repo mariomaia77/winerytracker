@@ -1,6 +1,9 @@
 <!-- Session#new
 Find me in app/views/session/new.html.erb -->
 <h3>Login</h3>
+
+<div class="formtext">
+  <div class="formtext-background"></div>
 <%= form_tag login_path do %>
 <p>
   <%= label_tag :email %>
@@ -15,3 +18,4 @@ Find me in app/views/session/new.html.erb -->
 <%= submit_tag "Login" %>
 
 <% end %>
+</div>

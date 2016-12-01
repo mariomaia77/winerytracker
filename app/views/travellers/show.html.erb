@@ -2,7 +2,8 @@
 Find me in app/views/travellers/show.html.erb -->
 
 <h3><%= @traveller.first_name %>'s Profile</h3>
-
+<div class="formtext">
+  <div class="formtext-background"></div>
 <h5>A few things about myself</h5>
 <ul>
   <li><%= cl_image_tag( @traveller.image, :class => "thumbnail" ) %></li>
@@ -26,3 +27,4 @@ Find me in app/views/travellers/show.html.erb -->
   <%= link_to "Delete Account", traveller_path( @traveller ), :method => :delete, :data => { :confirm => "Are you sure?" } %>
 </div>
 <% end %>
+</div>
