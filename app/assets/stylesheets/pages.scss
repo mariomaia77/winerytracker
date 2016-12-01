@@ -1,5 +1,30 @@
-.container{
-  border: 3px solid dodgerblue;
-  padding: 10px 20px;
-  margin-top: 15px;
+// .container{
+//   border: 3px solid dodgerblue;
+//   padding: 10px 20px;
+//   margin-top: 15px;
+// }
+
+body {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+ }
+
+ main {
+   flex: 1 0 auto;
+ }
+
+h2, h4, h5 {
+   text-align: center;
+   color: ghostwhite;
+}
+
+.materialboxed img {
+   width: 200px;
+   height: 200px;
+}
+
+.materialboxed.initialized.active img {
+   height: auto;
+   width: auto;
 }

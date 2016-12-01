@@ -14,8 +14,13 @@ class RegionsController < ApplicationController
 
   def create
     @region = Region.new region_params
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      @region.region_img = req['public_id']
+    end
     redirect_to region_path ( @region )
   end
+
 
   def edit
     @region = Region.find_by :id => params[:id]
@@ -23,10 +28,15 @@ class RegionsController < ApplicationController
 
   def update
     @region = Region.find_by :id => params[:id]
-    if @region.update( region_params )
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      @region.region_img = req['public_id']
+    end
+     @region.assign_attributes( region_params )
+    if @region.save
       redirect_to @region
-    else
-      render :edit
+     else
+        render :edit
     end
   end
 

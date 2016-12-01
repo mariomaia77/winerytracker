@@ -2,30 +2,30 @@
 <p>Find me in app/views/wineries/show.html.erb</p> -->
 
 <h3><%= @winery.name %></h3>
-
-<ul>
-  <li><%= image_tag( @winery.winery_image, :class => "thumbnail" ) %></li>
-  <br>
-  <li>Why you should visit us:</li>
-  <li> <%= @winery.winery_pitch %></li>
-  <br>
-  <li>Our must try wines are <%= @winery.must_try_wines %></li>
-  <li>Do we have a cellar door? <%= @winery.cellar_door %></li>
-  <li>Do we have a restaurant? <%= @winery.restaurant %></li>
-  <br>
-  <li>Want to get in touch?</li>
-  <li>You can reach us on <%= @winery.email %> or just checkout our website for more info on <%= @winery.website %></li>
+<div class="formtext">
+  <div class="formtext-background"></div>
+  <ul>
+    <li><%= cl_image_tag( @winery.winery_image, :class => "thumbnail") %></li>
+    <br>
+    <li>Why you should visit us:</li>
+    <li> <%= @winery.winery_pitch %></li>
+    <br>
+    <li>Our must try wines are <%= @winery.must_try_wines %></li>
+    <br>
+    <!-- <li>Do we have a cellar door? <%= @winery.cellar_door %></li>
+    <li>Do we have a restaurant? <%= @winery.restaurant %></li> -->
+    <br>
+    <li>Want to get in touch?</li>
+    <li>You can reach us on <%= @winery.email %> or just checkout our website for more info on <%= @winery.website %></li>
   </ul>
 
-<!-- <h5>Recent travellers who stopped by</h5> -->
-<div class="controls">
-  <%= link_to "Edit Winery", edit_winery_path( @winery ) %> |
-  <%= link_to "Delete Winery", winery_path( @winery ), :method => :delete, :data => { :confirm => "Are you sure?" } %>
-</div>
+  <!-- <h5>Recent travellers who stopped by</h5> -->
 
-<p>Our address is <%= @winery.winery_location %></p>
+  <p>Our address is <%= @winery.winery_location %></p>
 
-<div id="map"></div>
+
+
+<div id="map" ></div>
 
 <script>
    var winery = <%= raw @winery.to_json %>;
@@ -40,12 +40,29 @@
          zoom: 4,
          center: winery_map
       });
+      // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
       var marker = new google.maps.Marker({
          position: winery_map,
-         map: map
+         map: map,
+        // //  icon: iconBase + 'parking_lot_maps.png'
+        // icon: iconBase + 'images/wine-icon.jpg'
       });
    }
 </script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5qK_UhmrYD2Dbz1LTB9xx3upiU7Bmy2s&callback=initMap">
 </script>
+<br>
+
+<div class="controls">
+  <%= link_to "Edit Winery", edit_winery_path( @winery ) %> |
+  <%= link_to "Delete Winery", winery_path( @winery ), :method => :delete, :data => { :confirm => "Are you sure?" } %>
+</div>
+
+</div>
+<!-- var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    icon: iconBase + 'parking_lot_maps.png'
+  }); -->

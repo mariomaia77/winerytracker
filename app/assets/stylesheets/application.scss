@@ -15,7 +15,48 @@
 //   color: white;
 // }
 
+body {
+  background-image: url("oak-wine-barrel.jpg");
+  background-size: cover;
+   color: ghostwhite;
+}
+
+
 #map {
- height: 400px;
- width: 100%;
+ height: 350px;
+ width: 60%;
+ margin: 0 auto;
+}
+
+nav {
+  background-color: #4e342e;
+}
+
+footer {
+  background-color: #4e342e;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.formtext {
+  position: relative;
+  color: white;
+}
+
+.formtext-background {
+  position: absolute;
+  background-color: black;
+  opacity: 0.4;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+input {
+  background-color: grey;
+}
+
+.wineriesinregion {
+  margin: 10px auto;
+  text-align: center;
 }

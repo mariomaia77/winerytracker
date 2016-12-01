@@ -1,0 +1,11 @@
+<%= form_for(@winery, :html => {:multipart => true}) do |f| %>
+
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name, :required => true %>
+</p>
+
+<p>
+  <%= f.label :winery_image %>
+  <%= f.cl_image_upload :winery_image, :required => true %>
+</p>

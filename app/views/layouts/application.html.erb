@@ -4,38 +4,68 @@
   <title>WineryTracker</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h1>The Barrel Hunter's Winery Tracker</h1>
-  <h2>The wine traveller's new best friend</h2>
 
-  <nav>
-    <%= link_to "Home", root_path %> |
-    <%= link_to "About", "/about" %> |
-    <%= link_to "Search", search_traveller_path %> |
+  <nav class="nav-extended">
+      <div class="nav-wrapper">
+        <img src="/images/logo.jpg">
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "About", "/about" %></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "About", "/about" %></li>
+        </ul>
 
-    <%= link_to "Wineries", wineries_path %> |
-    <%= link_to "Wine Regions", regions_path %> |
-
-    <%= link_to "Travellers", travellers_path %> |
-
-  <!-- If there are no logged in travellers: -->
-  <% unless @current_traveller.present? %>
-    <%= link_to "Sign Up", new_traveller_path %> |
-    <%= link_to "Log In", login_path %>
-    <!-- If you are logged in:  -->
-  <% else %>
-    <!-- <%= link_to "Edit Profile", edit_traveller_path() %> | -->
-    <%= link_to "Log Out #{@current_traveller.email}", login_path, :method => :delete %>
-  <% end %>
-  </nav>
-
-<hr>
+        <ul class="tabs tabs-transparent">
+          <li class="tab"><%= link_to "Wineries", wineries_path, :target => "_self" %></li>
+          <li class="tab"><%= link_to "Wine Regions", regions_path, :target => "_self" %></li>
+          <li class="tab"><%= link_to "Travellers", travellers_path, :target => "_self" %></li>
+          <li class="tab"><%= link_to "Search", search_wineries_path, :target => "_self" %></li>
+          <% unless @current_traveller.present? %>
+          <li class="tab"><%= link_to "Sign Up", new_traveller_path, :target => "_self" %></li>
+          <li class="tab"><%= link_to "Log In", login_path, :target => "_self" %></li>
+          <% else %>
+          <li class="tab"><%= link_to "Log Out", login_path, :target => "_self", :method => :delete %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+<br>
 <div class="container">
 <%= yield %>
 </div>
-<hr>
+<br>
+<footer class="page-footer brown darken-1">
+         <!-- <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Footer Content</h5>
+              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>  -->
+            <!-- </div> -->
+            <!-- <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Links</h5>
+              <ul> -->
+                <!-- <li><a class="grey-text text-lighten-3" href="#!">About</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> -->
+              <!-- </ul>
+            </div>
+          </div>
+        </div> -->
+        <div class="footer-copyright brown darken-2">
+          <div class="container">
+          © 2016 The Barrel Hunter Productions
+          <a class="grey-text text-lighten-4 right" href="http://www.instagram.com/thebarrelhunter/">Follow us on Instagram</a>
+          </div>
+        </div>
+      </footer>
 
 </body>
 </html>

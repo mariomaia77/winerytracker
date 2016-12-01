@@ -1,2 +1,21 @@
-<h1>Wineries#search</h1>
-<p>Find me in app/views/wineries/search.html.erb</p>
+<!-- <h1>Wineries#search</h1>
+<p>Find me in app/views/wineries/search.html.erb</p> -->
+
+<!--Creating an option for travellers to measure distance between 2 wineries  -->
+<h3 class="display-4">Distance between wineries</h3>
+
+<div class="formtext">
+  <div class="formtext-background"></div>
+    <%= form_tag search_wine_path, :method => "get" do %>
+      <fieldset class="form-group">
+        <%= label_tag 'from', 'From' %>
+        <%= select_tag 'from', options_from_collection_for_select(@wineries, :id, :name), class: "form-control" %>
+      </fieldset>
+
+      <fieldset class="form-group">
+        <%= label_tag 'to', 'To' %>
+        <%= select_tag 'to', options_from_collection_for_select(@wineries, :id, :name), class: "form-control" %>
+      </fieldset>
+      <%= submit_tag 'Go!', class: 'btn btn-primary' %>
+    <% end %>
+</div>

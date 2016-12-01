@@ -1,2 +1,42 @@
-<h1>Wineries#search_results</h1>
-<p>Find me in app/views/wineries/search_results.html.erb</p>
+<!-- <h1>Wineries#search_results</h1>
+<p>Find me in app/views/wineries/search_results.html.erb</p> -->
+
+<div class="formtext">
+  <div class="formtext-background"></div>
+  <br>
+  <br>
+    <% flash.each do |name, msg| %>
+      <%= content_tag(:div, msg.html_safe, class: "alert alert-#{name}") %>
+    <% end %>
+
+
+    <div id="map" ></div>
+
+    <script>
+       var winery = <%= raw @winery.to_json %>;
+
+       function initMap() {
+
+          var winery_map = {
+             lat: winery["winery_lat"],
+             lng: winery["winery_long"]
+          };
+          var map = new google.maps.Map(document.getElementById('map'), {
+             zoom: 4,
+             center: winery_map
+          });
+          // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+          var marker = new google.maps.Marker({
+             position: winery_map,
+             map: map,
+  
+          });
+       }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5qK_UhmrYD2Dbz1LTB9xx3upiU7Bmy2s&callback=initMap">
+    </script>
+    <br>
+
+
+</div>

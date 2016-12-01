@@ -8,8 +8,9 @@
  <% end %>
 </ul>
 <% end %>
-
-<%= form_for @winery, :url => "/wineries/#{@winery.id}" do |f| %>
+<div class="formtext">
+  <div class="formtext-background"></div>
+<%= form_for(@winery, :html => {:multipart => true}) do |f| %>
 
 <p>
   <%= f.label :name %>
@@ -18,7 +19,7 @@
 
 <p>
   <%= f.label :winery_image %>
-  <%= f.url_field :winery_image, :required => true %>
+  <%= f.cl_image_upload :winery_image, :required => true %>
 </p>
 
 <p>
@@ -58,3 +59,5 @@
 
 <%= f.submit %>
 <% end %>
+</div>
+</div>

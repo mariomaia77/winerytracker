@@ -49,11 +49,11 @@ puts "\nREGION HAS_MANY WINERIES"
 puts "WINERY BELONGS_TO REGION"
 
 r1.wineries << w1 << w2 << w3 << w4
-r2.wineries << w5 << w6 << w7
+r3.wineries << w5 << w6 << w7
 
 puts "Region one winery count: #{ r1.wineries.count } "
-puts "Wineries in the second region"
-r2.wineries.each do |win|
+puts "Wineries in the third region"
+r3.wineries.each do |win|
   puts "\tWinery name: #{ win.name }"
 end
 

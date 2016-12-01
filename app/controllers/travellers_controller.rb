@@ -18,6 +18,10 @@ class TravellersController < ApplicationController
 
   def create
     @traveller = Traveller.new traveller_params
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload(params[:file])
+      @traveller.image = req['public_id']
+    end
     if @traveller.save
       session[:traveller_id] = @traveller.id
       # redirect_to traveller_path( @traveller )
@@ -44,7 +48,12 @@ class TravellersController < ApplicationController
 
   def update
       @traveller = @current_traveller
-      if @traveller.update( traveller_params )
+      if params[:file].present?
+        req = Cloudinary::Uploader.upload(params[:file])
+        @traveller.image = req['public_id']
+      end
+      @traveller.assign_attributes( traveller_params )
+      if @traveller.save
         redirect_to @traveller
       else
         render :edit

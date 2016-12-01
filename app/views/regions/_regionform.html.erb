@@ -9,7 +9,9 @@
 </ul>
 <% end %>
 
-<%= form_for @region, :url => "/regions/#{@region.id}" do |f| %>
+<div class="formtext">
+  <div class="formtext-background"></div>
+<%= form_for(@region, :html => {:multipart => true}) do |f| %>
 
 <p>
   <%= f.label :name %>
@@ -18,7 +20,7 @@
 
 <p>
   <%= f.label :region_img %>
-  <%= f.text_field :region_img, :required => true %>
+  <%= f.cl_image_upload :region_img, :required => true %>
 </p>
 
 <p>
@@ -39,3 +41,4 @@
 
 <%= f.submit %>
 <% end %>
+</div>

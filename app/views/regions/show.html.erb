@@ -2,20 +2,22 @@
 <p>Find me in app/views/regions/show.html.erb</p> -->
 
 <h3><%= @region.name %></h3>
-
-<!-- <h5>A few things about myself</h5> -->
+<div class="formtext">
+  <div class="formtext-background"></div>
 <ul>
-  <li><%= image_tag( @region.region_img, :class => "thumbnail" ) %></li>
-  <li>"Why you should visit this region: <%= @region.region_description %></li>
-  <li>"Our our main varieties <%= @region.region_varieties %>"</li>
-  <li>"Our recent vintages: <%= @region.vintages %>"</li>
+  <li><%= cl_image_tag( @region.region_img, :class => "thumbnail" ) %></li>
+  <li>Why you should visit this region: <%= @region.region_description %></li>
+  <br>
+  <li>Our our main varieties <%= @region.region_varieties %></li>
+  <br>
+  <li>Our recent vintages: <%= @region.vintages %></li>
   </ul>
 
 
   <h5>Wineries of <%= @region.name %></h5>
 
   <% @region.wineries.each do |w| %>
-  <p>
+  <p class="wineriesinregion">
     <%= link_to( w.name, winery_path(w) ) %>
   </p>
   <% end %>
@@ -25,27 +27,5 @@
     <%= link_to "Delete Region", region_path( @region ), :method => :delete, :data => { :confirm => "Are you sure?" } %>
   </div>
 
-  <div id="map"></div>
-
-  <script>
-     var region = <%= raw @region.to_json %>;
-     function initMap() {
-
-        var region_map = {
-           lat: <%= Region.region_lat %>,
-           lng: <%= Region.region_long %>
-        };
-        var map = new google.maps.Map(document.getElementById('map'), {
-           zoom: 4,
-           center: region
-        });
-        var marker = new google.maps.Marker({
-           position: region,
-           map: map
-        });
-     }
-  </script>
-
-  <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5qK_UhmrYD2Dbz1LTB9xx3upiU7Bmy2s&callback=initMap">
-  </script>
+</div>
+</div>

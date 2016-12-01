@@ -5,7 +5,7 @@ Find me in app/views/travellers/show.html.erb -->
 
 <h5>A few things about myself</h5>
 <ul>
-  <li><%= image_tag( @traveller.image, :class => "thumbnail" ) %></li>
+  <li><%= cl_image_tag( @traveller.image, :class => "thumbnail" ) %></li>
   <li>"Who am I? <%= "#{@traveller.first_name} #{@traveller.last_name}" %></li>
   <li>"I live in <%= @traveller.city %>, <%= @traveller.country %>"</li>
   <!-- <li>"I'm kid of old, born in <%= @traveller.dob %>, so I can drink alright!"</li> -->
@@ -19,11 +19,6 @@ Find me in app/views/travellers/show.html.erb -->
   <li>My favorite wine variety is <%= @traveller.fav_variety %></li>
 </ul>
 
-<!-- <h5>Some boring stuff on my profile</h5>
-<ul>
-  <li><%= @traveller.admin %></li>
-  <li><%= @traveller.password_digest %></li>
-</ul> -->
 <!-- Only show these buttons if the @user vriable contains the same user as @current_user  >> otherwise others can delete others accounts -->
 <% if @traveller == @current_traveller %>
 <div class="controls">

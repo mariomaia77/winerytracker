@@ -1,10 +1,10 @@
 
 
- <%= form_for @traveller do |f| %>
+ <%= form_for(@traveller, :html => {:multipart => true}) do |f| %>
 
 <p>
   <%= f.label :image %>
-  <%= f.text_field :image, :required => false %>
+  <%= f.cl_image_upload :image, :required => false %>
 </p>
 
 <p>
