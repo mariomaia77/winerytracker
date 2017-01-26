@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>WineryTracker</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+
   <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Karla" rel="stylesheet">
   <%= csrf_meta_tags %>
@@ -27,7 +27,8 @@
           <li class="tab"><%= link_to "Wineries", wineries_path, :target => "_self" %></li>
           <li class="tab"><%= link_to "Wine Regions", regions_path, :target => "_self" %></li>
           <li class="tab"><%= link_to "Travellers", travellers_path, :target => "_self" %></li>
-          <li class="tab"><%= link_to "Search", search_wineries_path, :target => "_self" %></li>
+          <li class="tab"><%= link_to "Search by Winery", search_wineries_path, :target => "_self" %></li>
+          <!-- <li class="tab"><%= link_to "Search by Region", search_regions_path, :target => "_self" %></li> -->
           <% unless @current_traveller.present? %>
           <li class="tab"><%= link_to "Sign Up", new_traveller_path, :target => "_self" %></li>
           <li class="tab"><%= link_to "Log In", login_path, :target => "_self" %></li>
@@ -65,11 +66,11 @@
         </div> -->
         <div class="footer-copyright brown darken-2">
           <div class="container">
-          © 2016 The Barrel Hunter Productions
+          © 2017 The Barrel Hunter Productions
           <a class="grey-text text-lighten-4 right" href="http://www.instagram.com/thebarrelhunter/">Follow us on Instagram</a>
           </div>
         </div>
       </footer>
-
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'  %>
 </body>
 </html>

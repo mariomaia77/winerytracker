@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'cloudinary'
 gem 'geocoder'
+gem 'google_directions'
+# gem 'gmaps4rails'
+# gem 'nokogiri'
 gem 'materialize-sass'
 
 gem 'bcrypt'
@@ -57,4 +60,5 @@ group :development do
   gem 'pry-stack_explorer'
   gem 'annotate'
   gem 'better_errors'
+  gem 'seed_dump'
 end

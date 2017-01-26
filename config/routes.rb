@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'directions/index'
+
+  get 'directions/show'
+
+  get 'directions/new'
+
+  get 'directions/create'
+
+  get 'directions/update'
+
+  get 'directions/destroy'
+
   get 'regions/index'
 
   get 'regions/show'
@@ -42,6 +54,8 @@ Rails.application.routes.draw do
 
   get "/wineries/searches" => "wineries#searches", :as => "search_wine"
   get "/wineries/search" => "wineries#search", :as => "search_wineries"
+  get "/regions/search" => "regions#search", :as => "search_regions"
+  get "/regions/search" => "region#search", :as => "search_region"
   get "/travellers/search_results" => "travellers#search_results", :as => "search_traveller"
   get "/travellers/additional_info" => "travellers#additional_info", :as => "additional_info_traveller"
   get "/travellers/edit" => "travellers#edit", :as => "edit_traveller"

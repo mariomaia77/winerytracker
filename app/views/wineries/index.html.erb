@@ -19,6 +19,19 @@
     <% end %>
    </div>
 <%= link_to "New Winery", new_winery_path %> -->
+<!-- <div id="search-map">
+ <i class="material-icons">search</i><div class="waves-effect waves-light btn"><%= link_to "Search", search_wineries_path %></div>
+</div> -->
+<div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+<!-- <a class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">search</i></a> -->
 <div class="row">
     <% @wineries.each do |w| %>
           <div class="col s12 m3">

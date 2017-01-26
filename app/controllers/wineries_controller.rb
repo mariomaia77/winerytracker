@@ -47,18 +47,24 @@ class WineriesController < ApplicationController
 
     def search
       @wineries = Winery.all
-    end
-
-    def searches
-      @from = Winery.find_by(id: params[:from])
-      @to = Winery.find_by(id: params[:to])
-
-      if @from && @to
-        flash[:success] =
-       "The distance between <b>#{@from.name}</b> and <b>#{@to.name}</b> is about #{@from.distance_from(@to.to_coordinates).round} km"
-     end
       redirect_to wineries_search_results_path
     end
+
+    def search_results
+      @wineries = Winery.all
+      @winery = Winery.find_by :id => params[:id]
+
+    end
+    # def searches
+    #   @start = Winery.find_by(id: params[:start])
+    #   @end = Winery.find_by(id: params[:end])
+    #
+    #   if @start && @end
+    #     flash[:success] =
+    #    "The distance between <b>#{@start.name}</b> and <b>#{@end.name}</b> is about #{@start.distance_from(@end.to_coordinates).round} km by helicopter."
+    #  end
+    #   redirect_to wineries_search_results_path
+    # end
 
 
     private

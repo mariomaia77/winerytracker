@@ -1,42 +1,103 @@
-<!-- <h1>Wineries#search_results</h1>
-<p>Find me in app/views/wineries/search_results.html.erb</p> -->
+<h3 id="google_directions_region">Directions to your favorite winery:</h3>
+<!-- <p>Find me in app/views/wineries/search_results.html.erb</p> -->
 
-<div class="formtext">
-  <div class="formtext-background"></div>
-  <br>
-  <br>
-    <% flash.each do |name, msg| %>
-      <%= content_tag(:div, msg.html_safe, class: "alert alert-#{name}") %>
-    <% end %>
-
-
-    <div id="map" ></div>
-
+    <div id="floating-panel">
+        <strong>Start:</strong>
+        <select id="start">
+            <option value="sydney, new south wales">Sydney</option>
+            <option value="melbourne, victoria">Melbourne</option>
+            <option value="adelaide, south australia">Adelaide</option>
+            <option value="canberra, new south wales">Canberra</option>
+            <option value="hobart, tasmania">Hobart</option>
+            <option value="perth, western australia">Perth</option>
+            <option value="brisbane, queensland">Brisbane</option>
+            <option value="sydney, new south wales">-----Wineries-----</option>
+            <% @wineries.each do | w | %>
+              <option value="<%= w.winery_location %>"><%= w.name %></option>
+            <% end %>
+            <!-- <option value="sydney, new south wales">Sydney</option>
+            <option value="dickson, new south wales">Canberra District</option>
+            <option value="cowra, new south wales">Cowra</option>
+            <option value="gundagai, new south wales">Gundagai</option>
+            <option value="port macquarie, new south wales">Hastings River</option>
+            <option value="young, new south wales">Hilltops</option>
+            <option value="pokolbin, new south wales">Hunter Valley</option>
+            <option value="mudgee, new south wales">Mudgee</option>
+            <option value="tenterfield, new south wales">New England</option>
+            <option value="orange, new south wales">Orange</option>
+            <option value="moama, new south wales">Perricoota</option>
+            <option value="griffith, new south wales">Riverina</option>
+            <option value="coolangatta, new south wales">Sholhaven Coast</option>
+            <option value="mittagong, new south wales">Southern Highlands</option>
+            <option value="tumbarumba, new south wales">Tumbarumba</option> -->
+        </select>
+        <br>
+        <strong>End:</strong>
+        <select id="end">
+            <% @wineries.each do | w | %>
+              <option value="<%= w.winery_location %>"><%= w.name %></option>
+            <% end %>
+            <!-- <option value="sydney, new south wales">Sydney</option>
+            <option value="dickson, new south wales">Canberra District</option>
+            <option value="cowra, new south wales">Cowra</option>
+            <option value="gundagai, new south wales">Gundagai</option>
+            <option value="port macquarie, new south wales">Hastings River</option>
+            <option value="young, new south wales">Hilltops</option>
+            <option value="pokolbin, new south wales">Hunter Valley</option>
+            <option value="mudgee, new south wales">Mudgee</option>
+            <option value="tenterfield, new south wales">New England</option>
+            <option value="orange, new south wales">Orange</option>
+            <option value="moama, new south wales">Perricoota</option>
+            <option value="griffith, new south wales">Riverina</option>
+            <option value="coolangatta, new south wales">Sholhaven Coast</option>
+            <option value="mittagong, new south wales">Southern Highlands</option>
+            <option value="tumbarumba, new south wales">Tumbarumba</option> -->
+        </select>
+      </div>
+    <div id="right-panel"></div>
+     <div id="map"></div>
     <script>
-       var winery = <%= raw @winery.to_json %>;
+    function initMap() {
+             var directionsDisplay = new google.maps.DirectionsRenderer;
+             var directionsService = new google.maps.DirectionsService;
+             var map = new google.maps.Map(document.getElementById('map'), {
+               zoom: 7,
+               center: {lat: -33.86, lng: 151.20}
+             });
+             directionsDisplay.setMap(map);
+             directionsDisplay.setPanel(document.getElementById('right-panel'));
 
-       function initMap() {
+             var control = document.getElementById('floating-panel');
+             control.style.display = 'block';
+             map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
-          var winery_map = {
-             lat: winery["winery_lat"],
-             lng: winery["winery_long"]
-          };
-          var map = new google.maps.Map(document.getElementById('map'), {
-             zoom: 4,
-             center: winery_map
-          });
-          // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-          var marker = new google.maps.Marker({
-             position: winery_map,
-             map: map,
-  
-          });
-       }
+             var onChangeHandler = function() {
+                console.log("ANAKNksn")
+               calculateAndDisplayRoute(directionsService, directionsDisplay);
+             };
+             $(".select-wrapper input, select").on("change input", onChangeHandler);
+            //  document.getElementById('start').addEventListener('change', onChangeHandler);
+            //  document.getElementById('end').addEventListener('change', onChangeHandler);
+           }
+
+           function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+             var start = document.getElementById('start').value;
+             var end = document.getElementById('end').value;
+             directionsService.route({
+               origin: start,
+               destination: end,
+               travelMode: 'DRIVING'
+             }, function(response, status) {
+               if (status === 'OK') {
+                 directionsDisplay.setDirections(response);
+               } else {
+                 window.alert('Directions request failed due to ' + status);
+               }
+             });
+           }
+
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5qK_UhmrYD2Dbz1LTB9xx3upiU7Bmy2s&callback=initMap">
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5qK_UhmrYD2Dbz1LTB9xx3upiU7Bmy2s&callback=initMap">
     </script>
-    <br>
-
-
-</div>
+    <!-- </div> -->

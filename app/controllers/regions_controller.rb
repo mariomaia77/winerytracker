@@ -46,6 +46,28 @@ class RegionsController < ApplicationController
       redirect_to regions_path()
     end
 
+    def search
+      @regions = Region.all
+      redirect_to regions_search_result_path
+    end
+
+    def search_result
+      @regions = Region.all
+      @region = Region.find_by :id => params[:id]
+
+    end
+
+    # def search
+    #   @regions = Region.all
+    #   redirect_to regions_search_result_path
+    # end
+    #
+    # def search_results
+    #   @regions = Region.all
+    #   @region = Region.find_by :id => params[:id]
+    # end
+
+
     private
       def region_params
         params.require(:region).permit(:name, :location, :vintages, :region_img, :region_description, :region_varieties, :region_event )

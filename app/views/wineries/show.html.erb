@@ -1,64 +1,150 @@
-<!-- <h1>Wineries#show</h1>
-<p>Find me in app/views/wineries/show.html.erb</p> -->
+<!-- Wineries#show
+Find me in app/views/wineries/show.html.erb -->
 
-<h3><%= @winery.name %></h3>
+ <div class="formtext">
+   <div class="formtext-background"></div>
+      <div class="row">
+        <div class="col s12 m6 l4">
+          <img id="winery-pic"><%= cl_image_tag( @winery.winery_image, :class => "thumbnail") %></img>
+          <br>
+        </div>
+        <div class="col s12 m6 l8">
+          <h3><%= @winery.name %></h3>
+          <p> <%= @winery.winery_pitch %></p>
+          <br>
+        </div>
+    </div>
+</div>
+
 <div class="formtext">
   <div class="formtext-background"></div>
-  <ul>
-    <li><%= cl_image_tag( @winery.winery_image, :class => "thumbnail") %></li>
-    <br>
-    <li>Why you should visit us:</li>
-    <li> <%= @winery.winery_pitch %></li>
-    <br>
-    <li>Our must try wines are <%= @winery.must_try_wines %></li>
-    <br>
-    <!-- <li>Do we have a cellar door? <%= @winery.cellar_door %></li>
-    <li>Do we have a restaurant? <%= @winery.restaurant %></li> -->
-    <br>
-    <li>Want to get in touch?</li>
-    <li>You can reach us on <%= @winery.email %> or just checkout our website for more info on <%= @winery.website %></li>
-  </ul>
+     <div class="row">
+     <div class="col s12 m4 l4">
+       <br>
+       <p class ="winery-stats">Winery rating:</p>
+       <p class= "winery-output"> <%= @winery.rating %></p>
+       <br>
+       <p class ="winery-stats">Must try wines:</p>
+       <p class= "winery-output"><%= @winery.must_try_wines %></p>
+       <br>
+       <p class ="winery-stats">Cellar door:</p>
+       <p class= "winery-output"> <%= @winery.cellar_door %></p>
+       <br>
+       <p class ="winery-stats">Restaurant:</li>
+       <p class= "winery-output"><%= @winery.restaurant %></p>
+       <br>
+       <p class ="winery-stats">Contact us:</p>
+       <p class= "winery-output"><%= @winery.email %></p>
+       <p class= "winery-output"><%= @winery.website %></p>
+      <br>
+       <p class ="winery-stats">Address:</p>
+       <p class= "winery-output"><%= @winery.winery_location %></p>
+       <br>
+       <div class="controls">
+         <%= link_to "Edit Winery", edit_winery_path( @winery ) %> |
+         <%= link_to "Delete Winery", winery_path( @winery ), :method => :delete, :data => { :confirm => "Are you sure?" } %>
+       </div>
+    </div>
 
-  <!-- <h5>Recent travellers who stopped by</h5> -->
+<div class="col s12 m8 l8">
+  <div id="map-container">
+    <div id="map-canvas" ></div>
+  </div>
 
-  <p>Our address is <%= @winery.winery_location %></p>
+  <script>
+     var winery = <%= raw @winery.to_json %>;
 
+     function initMap() {
 
+        var winery_map = {
+           lat: winery["winery_lat"],
+           lng: winery["winery_long"]
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
+           zoom: 7,
+           center: winery_map
+        });
+        // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var marker = new google.maps.Marker({
+           position: winery_map,
+           map: map,
+          // //  icon: iconBase + 'parking_lot_maps.png'
+          // icon: iconBase + 'images/icon.jpg'
+        });
+      // asetting parameters for custom marker:
+        function createImage(url){
+          var image = {
+            url: url,
+            // This marker is 32 pixels wide by 32 pixels tall.
+            size: new google.maps.Size(32, 32),
+            // The origin for this image is 0,0.
+            origin: new google.maps.Point(0,0),
+            // The anchor for this image is the base of the flagpole at 0,32.
+            anchor: new google.maps.Point(0, 32)
+          };
+          return image;
+          }
+        // creating a custom marker
+        function createCustomMarker(position,map){
+            marker = new google.maps.Marker({
+            position: winery_map,
+            map: map,
+            icon: createImage("/assets/images/icon.png")
+        });
+      }
 
-<div id="map" ></div>
+        function createInfoWindow(text){
+          var infowindow = new google.maps.InfoWindow({
+            content: text
+          });
+          return infowindow;
+        }
 
-<script>
-   var winery = <%= raw @winery.to_json %>;
-
-   function initMap() {
-
-      var winery_map = {
-         lat: winery["winery_lat"],
-         lng: winery["winery_long"]
-      };
-      var map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 4,
-         center: winery_map
+      // add infowindow when clicking on the simple marker marker
+      var info = createInfoWindow("<%= @winery.name %>");
+      google.maps.event.addListener(marker, 'click', function() {
+        info.open(map,marker);
       });
-      // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-      var marker = new google.maps.Marker({
-         position: winery_map,
-         map: map,
-        // //  icon: iconBase + 'parking_lot_maps.png'
-        // icon: iconBase + 'images/wine-icon.jpg'
-      });
+
+
+      var mapOptions = {
+          center: new google.maps.LatLng(lat, long),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.NORMAL,
+          panControl: true,
+          zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL,
+            position: google.maps.ControlPosition.LEFT_CENTER
+          },
+          mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, "map_style"]
+          },
+          scaleControl: false,
+          streetViewControl: true,
+          overviewMapControl: true
+        };
+//
+//         private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+//     @Override
+//     public void onMyLocationChange(Location location) {
+//         LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+//         mMarker = mMap.addMarker(new MarkerOptions().position(loc));
+//         if(mMap != null){
+//             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+//         }
+//     }
+// };
+// mMap.setOnMyLocationChangeListener(myLocationChangeListener);
+
    }
 </script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5qK_UhmrYD2Dbz1LTB9xx3upiU7Bmy2s&callback=initMap">
 </script>
-<br>
-
-<div class="controls">
-  <%= link_to "Edit Winery", edit_winery_path( @winery ) %> |
-  <%= link_to "Delete Winery", winery_path( @winery ), :method => :delete, :data => { :confirm => "Are you sure?" } %>
+<div id="driving-map">
+ <div class="waves-effect waves-light btn"><i class="material-icons">navigation</i><%= link_to "    Driving Instructions", search_wineries_path %></div>
 </div>
-
 </div>
 <!-- var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
   var marker = new google.maps.Marker({
